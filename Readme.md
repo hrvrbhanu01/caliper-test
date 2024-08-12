@@ -11,7 +11,7 @@ caliper
 │   └── config.yaml
 ├── network
 │   ├── ccp.yaml       //this is networkConfig of fabric n/w.
-│   └── network.yaml   //this is benchmark config
+│   └── network.yaml   //this is for caliper
 ├── package.json
 ├── README.md
 └── workload

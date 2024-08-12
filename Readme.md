@@ -25,7 +25,7 @@ caliper
 ## Running Caliper
 
 ```
-npx caliper bind --caliper-bind-sut fabric:2.5
+npx caliper bind --caliper-bind-sut fabric:2.2
 ```
 
 ```

@@ -10,8 +10,8 @@ caliper
 ├── benchmark
 │   └── config.yaml
 ├── network
-│   ├── ccp.yaml
-│   └── network.yaml
+│   ├── ccp.yaml       //this is networkConfig of fabric n/w.
+│   └── network.yaml   //this is benchmark config
 ├── package.json
 ├── README.md
 └── workload
@@ -25,7 +25,7 @@ caliper
 ## Running Caliper
 
 ```
-npx caliper bind --caliper-bind-sut fabric:2.2
+npx caliper bind --caliper-bind-sut fabric:2.5
 ```
 
 ```

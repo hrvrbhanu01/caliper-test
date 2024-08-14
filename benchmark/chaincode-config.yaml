@@ -1,0 +1,59 @@
+test:
+  name: healthlocker-contract-benchmark
+  description: A test benchmark
+  workers:
+    type: remote
+    number: 10
+  rounds:
+    - label: Create Appointments
+      description: This test will create appointments objects
+      txDuration: 3000
+      rateControl:
+        type: fixed-load
+        opts:
+          tps: 200
+      workload:
+        module: workload/invoke.js
+        arguments:
+          contractId: healthlocker
+          contractFunction: createAppointment
+
+    - label: Query All Appointments
+      description: Fetch all stored appointments
+      txNumber: 1000
+      rateControl:
+        type: linear-rate
+        opts:
+          startingTps: 100
+          finishingTps: 450
+      workload:
+        module: workload/read.js
+        arguments:
+          contractId: healthlocker
+          contractFunction: queryAppointment
+
+    - label: Update Appointment
+      description: Update existing appointments
+      txDuration: 3000
+      rateControl:
+        type: fixed-load
+        opts:
+          tps: 200
+      workload:
+        module: workload/invoke.js
+        arguments:
+          contractId: healthlocker
+          contractFunction: updateAppointment
+
+    - label: Delete Appointment
+      description: Delete appointments
+      txDuration: 3000
+      rateControl:
+        type: fixed-load
+        opts:
+          tps: 200
+      workload:
+        module: workload/invoke.js
+        arguments:
+          contractId: healthlocker
+          contractFunction: deleteAppointment

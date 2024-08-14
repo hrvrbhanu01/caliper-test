@@ -1,0 +1,62 @@
+[
+  {
+    "patientID": "patient1",
+    "name": "Alice",
+    "phoneNumber": "1234567890",
+    "abhaNo": "ABHA001"
+  },
+  {
+    "patientID": "patient2",
+    "name": "Bob",
+    "phoneNumber": "2345678901",
+    "abhaNo": "ABHA002"
+  },
+  {
+    "patientID": "patient3",
+    "name": "Charlie",
+    "phoneNumber": "3456789012",
+    "abhaNo": "ABHA003"
+  },
+  {
+    "patientID": "patient4",
+    "name": "David",
+    "phoneNumber": "4567890123",
+    "abhaNo": "ABHA004"
+  },
+  {
+    "patientID": "patient5",
+    "name": "Eve",
+    "phoneNumber": "5678901234",
+    "abhaNo": "ABHA005"
+  },
+  {
+    "patientID": "patient6",
+    "name": "Frank",
+    "phoneNumber": "6789012345",
+    "abhaNo": "ABHA006"
+  },
+  {
+    "patientID": "patient7",
+    "name": "Grace",
+    "phoneNumber": "7890123456",
+    "abhaNo": "ABHA007"
+  },
+  {
+    "patientID": "patient8",
+    "name": "Hank",
+    "phoneNumber": "8901234567",
+    "abhaNo": "ABHA008"
+  },
+  {
+    "patientID": "patient9",
+    "name": "Ivy",
+    "phoneNumber": "9012345678",
+    "abhaNo": "ABHA009"
+  },
+  {
+    "patientID": "patient10",
+    "name": "Jack",
+    "phoneNumber": "0123456789",
+    "abhaNo": "ABHA010"
+  }
+]

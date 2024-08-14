@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caliper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caliper
+  template:
+    metadata:
+      labels:
+        app: caliper
+    spec:
+      containers:
+      - name: caliper
+        image: hyperledger/caliper:0.6.0
+        command: ["npx", "caliper", "launch", "manager", "--caliper-workspace", "/hyperledger/caliper/benchmarks", "--caliper-benchconfig", "benchmarks/config.yaml", "--caliper-networkconfig", "benchmarks/network.yaml"]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /hyperledger/caliper/benchmarks
+        env:
+        - name: NODE_ENV
+          value: production
+      volumes:
+      - name: config-volume
+        configMap:
+          name: caliper-config

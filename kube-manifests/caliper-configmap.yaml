@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caliper-config
+data:
+  config.yaml: |
+    # Your config.yaml content here
+  network.yaml: |
+    # Your network.yaml content here
+  ccp.yaml: |
+    # Your ccp.yaml content here

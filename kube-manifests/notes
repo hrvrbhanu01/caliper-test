@@ -1,0 +1,21 @@
+to run caliper :
+
+kubectl get pods
+
+kubectl exec -it <caliper-pod-name> -- /bin/sh
+
+Navigate to the Caliper Directory:
+If needed, navigate to the directory where your Caliper benchmark configurations are located. For example:
+
+cd /hyperledger/caliper/benchmarks
+
+Execute the Caliper benchmark test using npx. Here’s an example command:
+
+npx caliper launch manager --caliper-workspace . --caliper-benchconfig benchmarks/config.yaml --caliper-networkconfig benchmarks/network.yaml
+
+Check Logs:
+Monitor the output in the pod to track the progress of the benchmark. You can also check the logs using:
+
+kubectl logs <caliper-pod-name>
+
+# or if you want to automate the process , you can use the kind CronJob instead of Deployment.

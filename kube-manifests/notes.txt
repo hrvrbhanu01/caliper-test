@@ -19,3 +19,8 @@ Monitor the output in the pod to track the progress of the benchmark. You can al
 kubectl logs <caliper-pod-name>
 
 # or if you want to automate the process , you can use the kind CronJob instead of Deployment.
+
+## ALSO THERE ARE TWO WAYS TO DEPLOYS CALIPER HERE: 
+1. EITHER WE CAN CREATE THE DOCKERFILE AND DEPLOY THE WHOLE PROJECT DIRECTORY ,
+or
+2. WE CAN DEPLOY THE CALIPER IMAGE DIRECTLY IN THE Deployment.yaml FILE !!!

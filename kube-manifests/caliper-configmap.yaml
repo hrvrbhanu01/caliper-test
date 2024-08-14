@@ -4,8 +4,124 @@ metadata:
   name: caliper-config
 data:
   config.yaml: |
-    # Your config.yaml content here
+    test:
+      name: healthlocker-contract-benchmark
+      description: A test benchmark
+      workers:
+        type: remote
+        number: 10
+      rounds:
+        - label: Create Appointment
+          description: This test will create appointments object
+          txDuration: 3000
+          rateControl:
+            type: fixed-load
+            opts:
+              tps: 200
+          workload:
+            module: workload/invoke.js
+            arguments:
+              contractId: healthlocker
+              contractFunction: createAppointment
+        - label: Query All the Appointments
+          description: Fetch all the stored Appointments
+          txNumber: 1000
+          rateControl:
+            type: linear-rate
+            opts:
+              startingTps: 100
+              finishingTps: 450
+          workload:
+            module: workload/read.js
+            arguments:
+              contractId: healthlocker
+              contractFunction: queryAppointment
+
   network.yaml: |
-    # Your network.yaml content here
+    name: Caliper Test
+    version: "2.0.0"
+    caliper:
+      blockchain: fabric
+      sutOptions:
+        mutualTls: true
+    channels:
+      - channelName: mychannel
+        contracts:
+          - id: healthlocker
+    organizations:
+      - mspid: Org1MSP
+        identities:
+          certificates:
+            - name: "admin"
+              admin: true
+              clientSignedCert:
+                pem: |
+                  -----BEGIN CERTIFICATE-----
+                  MIICUjCCAfmgAwIBAgIULaS6xwaZySog1TYYtBSu0w3H7NwwCgYIKoZIzj0EAwIw
+                  ajELMAkGA1UEBhMCRVMxETAPBgNVBAcTCEFsaWNhbnRlMREwDwYDVQQJEwhBbGlj
+                  YW50ZTEZMBcGA1UEChMQS3VuZyBGdSBTb2Z0d2FyZTENMAsGA1UECxMEVGVjaDEL
+                  MAkGA1UEAxMCY2EwHhcNMjQwNTI2MTI0MzI5WhcNMjUwNTI3MTI1NDAwWjAgMQ4w
+                  DAYDVQQLEwVhZG1pbjEOMAwGA1UEAxMFYWRtaW4wWTATBgcqhkjOPQIBBggqhkjO
+                  PQMBBwNCAAQJP6mVf4avCXf9fLviQbfN+0Lz/wbxASGFrGh/fGOBbsdKXpBE6aXJ
+                  +LxuyIJXokCwdZZFljOjLKLW+IXryVbUo4HGMIHDMA4GA1UdDwEB/wQEAwIHgDAM
+                  BgNVHRMBAf8EAjAAMB0GA1UdDgQWBBQOxUvWFOXGoon7p42qOjDtHDIrNTArBgNV
+                  HSMEJDAigCBpLGEbQjuWHYIXp9Q4N9YTyyC+/9QhzB4tBt11eDquujBXBggqAwQF
+                  BgcIAQRLeyJhdHRycyI6eyJoZi5BZmZpbGlhdGlvbiI6IiIsImhmLkVucm9sbG1l
+                  bnRJRCI6ImFkbWluIiwiaGYuVHlwZSI6ImFkbWluIn19MAoGCCqGSM49BAMCA0cA
+                  MEQCIF8XxS2eg2O9dM6Ta6z+7lcB7vuYwi53hOZU3vkiu8BzAiBT5/rcYHdpfNCP
+                  g1JtWEq8F2c7Tg8a+QWrf7jfCWIRpg==
+                  -----END CERTIFICATE-----
+              clientPrivateKey:
+                pem: |
+                  -----BEGIN PRIVATE KEY-----
+                  MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgFk5CaCjVT0U23yFq
+                  qXabm37457YVKv5IIlasBzH/KqGhRANCAAQJP6mVf4avCXf9fLviQbfN+0Lz/wbx
+                  ASGFrGh/fGOBbsdKXpBE6aXJ+LxuyIJXokCwdZZFljOjLKLW+IXryVbU
+                  -----END PRIVATE KEY-----
+    connectionProfile:
+      path: "network/ccp.yaml"
+      discover: true
+
   ccp.yaml: |
-    # Your ccp.yaml content here
+    name: hlf-network
+    version: 1.0.0
+    client:
+      tlsEnable: true
+      organization: Org1MSP
+      connection:
+        timeout:
+          peer:
+            endorser: "3000"
+            orderer: "3000"
+        channels:
+          mychannel:
+            peers:
+              org1-peer1.fabric: {}
+        organizations:
+          Org1MSP:
+            mspid: Org1MSP
+            signedCert:
+              pem: |
+                -----BEGIN CERTIFICATE-----
+                MIICUjCCAfmgAwIBAgIULaS6xwaZySog1TYYtBSu0w3H7NwwCgYIKoZIzj0EAwIw
+                ajELMAkGA1UEBhMCRVMxETAPBgNVBAcTCEFsaWNhbnRlMREwDwYDVQQJEwhBbGlj
+                YW50ZTEZMBcGA1UEChMQS3VuZyBGdSBTb2Z0d2FyZTENMAsGA1UECxMEVGVjaDEL
+                MAkGA1UEAxMCY2EwHhcNMjQwNTI2MTI0MzI5WhcNMjUwNTI3MTI1NDAwWjAgMQ4w
+                DAYDVQQLEwVhZG1pbjEOMAwGA1UEAxMFYWRtaW4wWTATBgcqhkjOPQIBBggqhkjO
+                PQMBBwNCAAQJP6mVf4avCXf9fLviQbfN+0Lz/wbxASGFrGh/fGOBbsdKXpBE6aXJ
+                +LxuyIJXokCwdZZFljOjLKLW+IXryVbUo4HGMIHDMA4GA1UdDwEB/wQEAwIHgDAM
+                BgNVHRMBAf8EAjAAMB0GA1UdDgQWBBQOxUvWFOXGoon7p42qOjDtHDIrNTArBgNV
+                HSMEJDAigCBpLGEbQjuWHYIXp9Q4N9YTyyC+/9QhzB4tBt11eDquujBXBggqAwQF
+                BgcIAQRLeyJhdHRycyI6eyJoZi5BZmZpbGlhdGlvbiI6IiIsImhmLkVucm9sbG1l
+                bnRJRCI6ImFkbWluIiwiaGYuVHlwZSI6ImFkbWluIn19MAoGCCqGSM49BAMCA0cA
+                MEQCIF8XxS2eg2O9dM6Ta6z+7lcB7vuYwi53hOZU3vkiu8BzAiBT5/rcYHdpfNCP
+                g1JtWEq8F2c7Tg8a+QWrf7jfCWIRpg==
+                -----END CERTIFICATE-----
+            adminPrivateKey:
+              pem: |
+                -----BEGIN PRIVATE KEY-----
+                MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgFk5CaCjVT0U23yFq
+                qXabm37457YVKv5IIlasBzH/KqGhRANCAAQJP6mVf4avCXf9fLviQbfN+0Lz/wbx
+                ASGFrGh/fGOBbsdKXpBE6aXJ+LxuyIJXokCwdZZFljOjLKLW+IXryVbU
+                -----END PRIVATE KEY-----
+            url: grpcs://peer1-org1.plenome.com:443

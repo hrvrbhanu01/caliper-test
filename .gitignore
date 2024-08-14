@@ -1,4 +1,4 @@
 node_modules/
 network
-kube-manifests/caliper-configmap
+kube-manifests/caliper-configmap.yaml
 

@@ -43,4 +43,4 @@ function readWorkloadModule() {
   return new QueryWorkload();
 }
 
-module.exports.createWorkloadModule = readWorkloadModule;
+module.exports.createWorkloadModule = readWorkloadModule; 

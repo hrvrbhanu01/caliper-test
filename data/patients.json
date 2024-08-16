@@ -3,60 +3,80 @@
     "patientID": "patient1",
     "name": "Alice",
     "phoneNumber": "1234567890",
-    "abhaNo": "ABHA001"
+    "abhaNo": "ABHA001",
+    "age": 30,
+    "address": "123 Main St, Springfield"
   },
   {
     "patientID": "patient2",
     "name": "Bob",
     "phoneNumber": "2345678901",
-    "abhaNo": "ABHA002"
+    "abhaNo": "ABHA002",
+    "age": 45,
+    "address": "456 Oak St, Rivertown"
   },
   {
     "patientID": "patient3",
     "name": "Charlie",
     "phoneNumber": "3456789012",
-    "abhaNo": "ABHA003"
+    "abhaNo": "ABHA003",
+    "age": 28,
+    "address": "789 Pine St, Lakeview"
   },
   {
     "patientID": "patient4",
     "name": "David",
     "phoneNumber": "4567890123",
-    "abhaNo": "ABHA004"
+    "abhaNo": "ABHA004",
+    "age": 50,
+    "address": "101 Maple Ave, Hilltop"
   },
   {
     "patientID": "patient5",
     "name": "Eve",
     "phoneNumber": "5678901234",
-    "abhaNo": "ABHA005"
+    "abhaNo": "ABHA005",
+    "age": 35,
+    "address": "202 Cedar Ln, Valleybrook"
   },
   {
     "patientID": "patient6",
     "name": "Frank",
     "phoneNumber": "6789012345",
-    "abhaNo": "ABHA006"
+    "abhaNo": "ABHA006",
+    "age": 40,
+    "address": "303 Birch Dr, Mountainview"
   },
   {
     "patientID": "patient7",
     "name": "Grace",
     "phoneNumber": "7890123456",
-    "abhaNo": "ABHA007"
+    "abhaNo": "ABHA007",
+    "age": 32,
+    "address": "404 Elm St, Forestville"
   },
   {
     "patientID": "patient8",
     "name": "Hank",
     "phoneNumber": "8901234567",
-    "abhaNo": "ABHA008"
+    "abhaNo": "ABHA008",
+    "age": 38,
+    "address": "505 Willow Rd, Lakeside"
   },
   {
     "patientID": "patient9",
     "name": "Ivy",
     "phoneNumber": "9012345678",
-    "abhaNo": "ABHA009"
+    "abhaNo": "ABHA009",
+    "age": 29,
+    "address": "606 Ash St, Greenwood"
   },
   {
     "patientID": "patient10",
     "name": "Jack",
     "phoneNumber": "0123456789",
-    "abhaNo": "ABHA010"
+    "abhaNo": "ABHA010",
+    "age": 33,
+    "address": "707 Cypress Ave, Brookfield"
   }
 ]

@@ -11,6 +11,7 @@ class ChaincodeWorkload extends WorkloadModuleBase {
         this.patientData = this.loadDataFromFile('patients.json');
         this.doctorData = this.loadDataFromFile('doctors.json');
         this.hospitalData = this.loadDataFromFile('hospitals.json');
+        this.documentData = this.loadDataFromFile('documents.json');
     }
     loadDataFromFile(fileName) {
         const filePath = path.resolve(__dirname, '..', 'data', fileName);
@@ -45,14 +46,77 @@ class ChaincodeWorkload extends WorkloadModuleBase {
 
     generateDataForFunction(functionName){
         switch(functionName){
+            case 'createPatient':
+                return this.generateCreatePatientData();
+            case 'updatePatient':
+                return this.generateUpdatePatientData();
+            case 'deletePatient':
+                return this.generateDeletePatientData();
             case 'createAppointment':
                 return this.generateAppointmentData();
             case 'updateAppointment':
-                return this.generateUpdateData();
+                return this.generateUpdateAppointmentData();
             case 'deleteAppointment':
-                return this.generateDeleteData();
+                return this.generateDeleteAppointmentData();
+            // case 'uploadDocument':
+            //     return this.generateDocumentData();
+            // case 'updateDocument':
+            //     return this.generateUpdateDocumentData();
+            // case 'deleteDocument':
+            //     return this.generateDeleteDocument();
             default:
                 throw new Error(`Unknown function ${functionName}`);
+        }
+    }
+    // generateDocumentData(){
+    //     return{
+    //         id: ``,
+    //         metaData: ,
+    //         patientID: this.getRandomValue(this.patientData).patientID,
+    //         patientName: this.getRandomValue(this.patientData).name,
+    //         hiType: ,
+    //         abhaAddress: ,
+    //         phoneNumber: this.getRandomValue(this.patientData).phoneNumber,
+    //         hospitalID: this.getRandomValue(this.getRandomValue).hospitalID,
+    //         transactionID: ,
+    //         keys: ,
+    //         documentName: ,
+    //         category: ,
+    //         timestamp: new Date().toISOString()
+    //     }
+    // }
+    // generateUpdateDocumentData(){
+    //     return{
+
+    //     }
+    // }
+    // generateDeleteDocument(){
+    //     return{
+
+    //     }
+    // }
+    generateCreatePatientData(){
+        return{
+            id: `pat${this.txIndex}`,
+            abhaNo: this.getRandomValue(this.patientData).abhaNo,
+            patientName: this.getRandomValue(this.patientData).name,
+            age: this.getRandomValue(this.patientData).age,
+            gender: this.getRandomValue(this.patientData).gender,
+            phoneNumber: this.getRandomValue(this.patientData).phoneNumber,
+            address: this.getRandomValue(this.patientData).address,
+            timestamp: new Date().toISOString()
+        }
+    }
+    generateUpdatePatientData(){
+        return{
+            id: `pat${this.txIndex}`,
+            age: this.getRandomValue(this.patientData).age,
+            address: this.getRandomValue(this.patientData).address
+        }
+    }
+    generateDeletePatientData(){
+        return{
+            id: `pat${this.txIndex}`
         }
     }
 
@@ -69,7 +133,7 @@ class ChaincodeWorkload extends WorkloadModuleBase {
         };
     }
 
-    generateUpdateData(){
+    generateUpdateAppointmentData(){
         return{
             id: `app${this.txIndex}`,
             doctorName: this.getRandomValue(this.doctorData).name,
@@ -78,7 +142,7 @@ class ChaincodeWorkload extends WorkloadModuleBase {
         };
     }
 
-    generateDeleteData(){
+    generateDeleteAppointmentData(){
         return{
             id: `app${this.txIndex}` //let's say id is known!
         };

@@ -1,12 +1,12 @@
 [
-  { "name": "City Hospital" },
-  { "name": "General Hospital" },
-  { "name": "Central Clinic" },
-  { "name": "Medical Center" },
-  { "name": "Health Institute" },
-  { "name": "Northside Hospital" },
-  { "name": "West End Clinic" },
-  { "name": "Eastside Health Center" },
-  { "name": "Southtown Hospital" },
-  { "name": "Downtown Medical Plaza" }
+  { "hospitalID": "hospital1", "name": "City Hospital" },
+  { "hospitalID": "hospital2", "name": "General Hospital" },
+  { "hospitalID": "hospital3", "name": "Central Clinic" },
+  { "hospitalID": "hospital4", "name": "Medical Center" },
+  { "hospitalID": "hospital5", "name": "Health Institute" },
+  { "hospitalID": "hospital6", "name": "Northside Hospital" },
+  { "hospitalID": "hospital7", "name": "West End Clinic" },
+  { "hospitalID": "hospital8", "name": "Eastside Health Center" },
+  { "hospitalID": "hospital9", "name": "Southtown Hospital" },
+  { "hospitalID": "hospital10", "name": "Downtown Medical Plaza" }
 ]

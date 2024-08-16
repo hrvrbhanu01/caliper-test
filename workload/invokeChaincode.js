@@ -76,7 +76,6 @@ class ChaincodeWorkload extends WorkloadModuleBase {
                 return this.generateUpdateAppointmentData();
             case 'deleteAppointment':
                 return this.generateDeleteAppointmentData();
-            // Add other functions here
             default:
                 throw new Error(`Unknown function ${functionName}`);
         }

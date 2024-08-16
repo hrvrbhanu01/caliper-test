@@ -13,11 +13,12 @@ class ChaincodeWorkload extends WorkloadModuleBase {
         this.hospitalData = this.loadDataFromFile('hospitals.json');
         this.documentData = this.loadDataFromFile('documents.json');
     }
+
     loadDataFromFile(fileName) {
         const filePath = path.resolve(__dirname, '..', 'data', fileName);
         const fileContent = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(fileContent);
-      }
+    }
 
     getRandomValue(array){
         return array[Math.floor(Math.random() * array.length)];
@@ -35,6 +36,9 @@ class ChaincodeWorkload extends WorkloadModuleBase {
         const functionName = this.roundArguments.contractFunction;
         const data = this.generateDataForFunction(functionName);
 
+        // Store the generated ID in a file
+        this.storeGeneratedID(data.id);
+
         const request = {
             contractId: this.roundArguments.contractId,
             contractFunction: functionName,
@@ -42,6 +46,20 @@ class ChaincodeWorkload extends WorkloadModuleBase {
             readOnly: false
         };
         await this.sutAdapter.sendRequests(request);
+    }
+
+    storeGeneratedID(id) {
+        const idFilePath = path.resolve(__dirname, '..', 'data/generatedIDs.json');
+        let generatedIDs = [];
+
+        if (fs.existsSync(idFilePath)) {
+            const fileContent = fs.readFileSync(idFilePath);
+            generatedIDs = JSON.parse(fileContent);
+        }
+
+        generatedIDs.push(id);
+
+        fs.writeFileSync(idFilePath, JSON.stringify(generatedIDs, null, 2));
     }
 
     generateDataForFunction(functionName){
@@ -58,43 +76,12 @@ class ChaincodeWorkload extends WorkloadModuleBase {
                 return this.generateUpdateAppointmentData();
             case 'deleteAppointment':
                 return this.generateDeleteAppointmentData();
-            // case 'uploadDocument':
-            //     return this.generateDocumentData();
-            // case 'updateDocument':
-            //     return this.generateUpdateDocumentData();
-            // case 'deleteDocument':
-            //     return this.generateDeleteDocument();
+            // Add other functions here
             default:
                 throw new Error(`Unknown function ${functionName}`);
         }
     }
-    // generateDocumentData(){
-    //     return{
-    //         id: ``,
-    //         metaData: ,
-    //         patientID: this.getRandomValue(this.patientData).patientID,
-    //         patientName: this.getRandomValue(this.patientData).name,
-    //         hiType: ,
-    //         abhaAddress: ,
-    //         phoneNumber: this.getRandomValue(this.patientData).phoneNumber,
-    //         hospitalID: this.getRandomValue(this.getRandomValue).hospitalID,
-    //         transactionID: ,
-    //         keys: ,
-    //         documentName: ,
-    //         category: ,
-    //         timestamp: new Date().toISOString()
-    //     }
-    // }
-    // generateUpdateDocumentData(){
-    //     return{
 
-    //     }
-    // }
-    // generateDeleteDocument(){
-    //     return{
-
-    //     }
-    // }
     generateCreatePatientData(){
         return{
             id: `pat${this.txIndex}`,
@@ -105,19 +92,21 @@ class ChaincodeWorkload extends WorkloadModuleBase {
             phoneNumber: this.getRandomValue(this.patientData).phoneNumber,
             address: this.getRandomValue(this.patientData).address,
             timestamp: new Date().toISOString()
-        }
+        };
     }
+
     generateUpdatePatientData(){
         return{
             id: `pat${this.txIndex}`,
             age: this.getRandomValue(this.patientData).age,
             address: this.getRandomValue(this.patientData).address
-        }
+        };
     }
+
     generateDeletePatientData(){
         return{
             id: `pat${this.txIndex}`
-        }
+        };
     }
 
     generateAppointmentData(){
@@ -144,7 +133,7 @@ class ChaincodeWorkload extends WorkloadModuleBase {
 
     generateDeleteAppointmentData(){
         return{
-            id: `app${this.txIndex}` //let's say id is known!
+            id: `app${this.txIndex}`
         };
     }
 }

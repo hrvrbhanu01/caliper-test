@@ -13,7 +13,7 @@ test:
           opts:
             tps: 200
       workload:
-        module: workload/invoke.js
+        module: workload/invokeAppointment.js
         arguments:
           contractId: healthlocker
           contractFunction: createAppointment
@@ -23,7 +23,7 @@ test:
       rateControl:
          { type: "linear-rate", opts: { startingTps: 100, finishingTps: 450 } }
       workload:
-         module: workload/read.js
+         module: workload/readAppointment.js
          arguments:
            contractId: healthlocker
            contractFunction: queryAppointment

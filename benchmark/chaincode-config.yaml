@@ -13,7 +13,7 @@ test:
         opts:
           tps: 200
       workload:
-        module: workload/invoke.js
+        module: workload/invokeChaincode.js
         arguments:
           contractId: healthlocker
           contractFunction: createAppointment
@@ -27,7 +27,7 @@ test:
           startingTps: 100
           finishingTps: 450
       workload:
-        module: workload/read.js
+        module: workload/readChaincode.js
         arguments:
           contractId: healthlocker
           contractFunction: queryAppointment
@@ -40,7 +40,7 @@ test:
         opts:
           tps: 200
       workload:
-        module: workload/invoke.js
+        module: workload/invokeChaincode.js
         arguments:
           contractId: healthlocker
           contractFunction: updateAppointment
@@ -53,7 +53,7 @@ test:
         opts:
           tps: 200
       workload:
-        module: workload/invoke.js
+        module: workload/invokeChaincode.js
         arguments:
           contractId: healthlocker
           contractFunction: deleteAppointment
